@@ -1,0 +1,22 @@
+{
+  "name": "windows_keypad_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint . --ext .ts"
+  },
+  "author": "MarcJus",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^16.11.12",
+    "net": "^1.0.2",
+    "typescript": "^4.5.3"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
+    "@typescript-eslint/parser": "^5.6.0",
+    "eslint": "^8.4.1"
+  }
+}
