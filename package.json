@@ -2,7 +2,7 @@
   "name": "windows_keypad_server",
   "version": "1.0.0",
   "description": "",
-  "main": "src/main.js",
+  "main": "dist/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .ts"
@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^16.11.12",
+    "esm": "^3.2.25",
     "net": "^1.0.2",
     "typescript": "^4.5.3"
   },

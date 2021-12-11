@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import net from "net";
 const server = net.createServer();
-const port = 3001;
+const port = 3000;
 server.on("connection", (socket) => {
     const clientAddress = socket.remoteAddress;
     console.log(`Nouvelle connexion : ${clientAddress}`);
@@ -23,5 +23,10 @@ server.on("connection", (socket) => {
     socket.on("data", (data) => __awaiter(void 0, void 0, void 0, function* () {
         const string_data = data.toString("utf-8");
         console.log(`Message de ${clientAddress} : ${string_data}`);
+        // Réponse : succes
+        socket.write("success");
     }));
+});
+server.listen(port, () => {
+    console.log("Serveur démarré sur le port " + port);
 });

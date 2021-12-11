@@ -1,7 +1,7 @@
 import net, {Server} from "net";
 
 const server: Server = net.createServer();
-const port = 3001;
+const port = 3000;
 
 server.on("connection", (socket: net.Socket) => {
     const clientAddress: string | undefined = socket.remoteAddress;
@@ -20,6 +20,13 @@ server.on("connection", (socket: net.Socket) => {
         console.log(`Message de ${clientAddress} : ${string_data}`);
 
         
+
+        // Réponse : succes
+        socket.write("success");
     });
 
+});
+
+server.listen(port, () => {
+    console.log("Serveur démarré sur le port "+port);
 });
