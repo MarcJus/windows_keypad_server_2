@@ -1,0 +1,77 @@
+[33mcommit 8a91cbeca22ac6be0e7fcd42e30f1924b35d86b4[m[33m ([m[1;36mHEAD -> [m[1;32mdev[m[33m)[m
+Author: MarcJus <jusseaumemarc@gmail.com>
+Date:   Mon Dec 27 14:38:15 2021 +0100
+
+    process.js modifié
+
+[33mcommit 517b98b4f6da33d4e2f6aff844ef4213e016d303[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: MarcJus <jusseaumemarc@gmail.com>
+Date:   Sun Dec 26 15:53:20 2021 +0100
+
+    try catch de l'execution de la touche entrée
+
+[33mcommit 46a9df035a7c09343eb0466f1f2b817ace9fec65[m
+Author: MarcJus <jusseaumemarc@gmail.com>
+Date:   Sun Dec 26 15:52:41 2021 +0100
+
+    ajout de console.log
+
+[33mcommit ce251c7d00926c790a8c693702bbdba251e9a0b1[m
+Author: MarcJus <jusseaumemarc@gmail.com>
+Date:   Sun Dec 26 15:51:50 2021 +0100
+
+    ajout d'une mauvaise commande
+
+[33mcommit 8a894ebfac2eebd6b099196ffc43763ba1a72b6b[m
+Author: MarcJus <jusseaumemarc@gmail.com>
+Date:   Sun Dec 26 15:48:45 2021 +0100
+
+    ajout du script watch pour tsc --watch
+
+[33mcommit 3fd6dab6f0120e3c7d4d7683eb48299a69307e21[m
+Author: MarcJus <jusseaumemarc@gmail.com>
+Date:   Sun Dec 12 12:16:03 2021 +0100
+
+    suppression du fichier 'index'
+
+[33mcommit d6c9243b3d9fbe1c37343b2651698013dbae94f2[m
+Author: MarcJus <jusseaumemarc@gmail.com>
+Date:   Sun Dec 12 12:15:32 2021 +0100
+
+    tsc
+
+[33mcommit e746735db3c7e201ba016697bba326fa1e222804[m
+Author: MarcJus <jusseaumemarc@gmail.com>
+Date:   Sun Dec 12 12:14:56 2021 +0100
+
+    création de la fonction executeKey et executeCommand
+
+[33mcommit de921a1b90f32cb02719ef7bb1cd34896ffda325[m
+Author: MarcJus <jusseaumemarc@gmail.com>
+Date:   Sat Dec 11 18:39:45 2021 +0100
+
+    ajout du commands.ts avec différentes commandes
+
+[33mcommit 309549f54c0779f19b9a0b773c4b625881a79c1b[m
+Author: MarcJus <jusseaumemarc@gmail.com>
+Date:   Sat Dec 11 18:36:20 2021 +0100
+
+    Ajout de nodemon dans le script start de npm
+
+[33mcommit b025f1d930317253dfce6167bd3eb931b73fedd1[m
+Author: MarcJus <jusseaumemarc@gmail.com>
+Date:   Sat Dec 11 18:35:42 2021 +0100
+
+    création du process.ts, du type Key et de l'interface CommandExecInformation. Ajout de nodemon
+
+[33mcommit 0f37388fb8fd3f660bffdd5691846aae1e1d8ff5[m
+Author: MarcJus <jusseaumemarc@gmail.com>
+Date:   Fri Dec 10 22:17:19 2021 +0100
+
+    creation du dossier src/ et reception de donnees
+
+[33mcommit 6a33fe2083de5be0321a7eea2966bcf0f0ef06ff[m
+Author: MarcJus <jusseaumemarc@gmail.com>
+Date:   Fri Dec 10 21:32:23 2021 +0100
+
+    initialisation

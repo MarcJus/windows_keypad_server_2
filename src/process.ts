@@ -54,7 +54,6 @@ async function executeCommand(command: string): Promise<CommandExecInformation>{
     return new Promise((resolve, reject) => {
         let command_exec_information: CommandExecInformation = {error: false, message: ""};
 
-        try{
             exec(command, (error: ExecException | null, stdout: string, stderr: string) => {
                 console.log("error : "+error+", stdout : "+stdout+", stderr : "+stderr);
                 if(error != null){
@@ -79,11 +78,7 @@ async function executeCommand(command: string): Promise<CommandExecInformation>{
                 console.log("resolve");
                 resolve(command_exec_information);
             });
-        } catch (e) {
-            console.log("catch");
-            reject(e);
-        }
-        resolve(command_exec_information);
+            
     });
     
 }
