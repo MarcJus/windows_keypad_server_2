@@ -22,17 +22,11 @@ export function executeKey(key) {
         };
         const command = commands[key];
         if (typeof command === "string") {
-            try {
-                result = yield executeCommand(command);
-            }
-            catch (e) {
-                console.log("error executeKey");
-            }
+            result = yield executeCommand(command);
         }
         else {
             command(); // TODO Gérer les erreurs
         }
-        console.log("result : " + result);
         return result;
     });
 }
@@ -43,41 +37,31 @@ export function executeKey(key) {
  */
 function executeCommand(command) {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log(command);
+        console.log("commande :", command);
         return new Promise((resolve, reject) => {
             let command_exec_information = { error: false, message: "" };
-            try {
-                exec(command, (error, stdout, stderr) => {
-                    console.log("error : " + error + ", stdout : " + stdout + ", stderr : " + stderr);
-                    if (error != null) {
-                        console.log("error != null");
-                        command_exec_information = {
-                            error: true,
-                            message: error.message
-                        };
-                        reject(error);
-                    }
-                    if (stderr !== "") {
-                        command_exec_information = {
-                            error: true,
-                            message: stderr
-                        };
-                    }
-                    else {
-                        command_exec_information = {
-                            error: false,
-                            message: stdout
-                        };
-                    }
-                    console.log("resolve");
-                    resolve(command_exec_information);
-                });
-            }
-            catch (e) {
-                console.log("catch");
-                reject(e);
-            }
-            resolve(command_exec_information);
+            exec(command, (error, stdout, stderr) => {
+                if (error != null) {
+                    command_exec_information = {
+                        error: true,
+                        message: error.message
+                    };
+                    reject(error);
+                }
+                if (stderr !== "") {
+                    command_exec_information = {
+                        error: true,
+                        message: stderr
+                    };
+                }
+                else {
+                    command_exec_information = {
+                        error: false,
+                        message: stdout
+                    };
+                }
+                resolve(command_exec_information);
+            });
         });
     });
 }

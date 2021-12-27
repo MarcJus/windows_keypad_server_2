@@ -11,7 +11,7 @@ export default {
     9: "\"C:\\Users\\jusse\\AppData\\Local\\Postman\\Postman.exe\"",
     "*": "ipconfige",
     0: "ipconfig",
-    "#": "",
+    "#": "ifconfige",
     A: "ipconfig",
     B: "ipconfig",
     C: "ipconfig",
