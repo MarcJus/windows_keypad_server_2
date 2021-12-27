@@ -22,14 +22,12 @@ server.on("connection", (socket: net.Socket) => {
 
         try {
             const command_exec_information = await executeKey((string_data as Key));
-            console.log("command exec information : ",command_exec_information);
+            console.log(command_exec_information?.message);
+            socket.write("success");
         } catch (e) {
-            console.log(e);
             socket.write("error");
         }
-
-        // Réponse : succes
-        socket.write("success");
+        console.log(" ");
     });
 
 });

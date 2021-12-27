@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import net from "net";
+import { executeKey } from "./process";
 const server = net.createServer();
 const port = 3000;
 server.on("connection", (socket) => {
@@ -23,8 +24,15 @@ server.on("connection", (socket) => {
     socket.on("data", (data) => __awaiter(void 0, void 0, void 0, function* () {
         const string_data = data.toString("utf-8");
         console.log(`Message de ${clientAddress} : ${string_data}`);
-        // Réponse : succes
-        socket.write("success");
+        try {
+            const command_exec_information = yield executeKey(string_data);
+            console.log(command_exec_information === null || command_exec_information === void 0 ? void 0 : command_exec_information.message);
+            socket.write("success");
+        }
+        catch (e) {
+            socket.write("error");
+        }
+        console.log(" ");
     }));
 });
 server.listen(port, () => {
