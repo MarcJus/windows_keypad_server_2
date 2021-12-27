@@ -47,9 +47,7 @@ function executeCommand(command) {
             let command_exec_information = { error: false, message: "" };
             try {
                 exec(command, (error, stdout, stderr) => {
-                    console.log("error : " + error + ", stdout : " + stdout + ", stderr : " + stderr);
                     if (error != null) {
-                        console.log("error != null");
                         command_exec_information = {
                             error: true,
                             message: error.message
@@ -68,12 +66,10 @@ function executeCommand(command) {
                             message: stdout
                         };
                     }
-                    console.log("resolve");
                     resolve(command_exec_information);
                 });
             }
             catch (e) {
-                console.log("catch");
                 reject(e);
             }
             resolve(command_exec_information);
@@ -86,11 +82,7 @@ function executeCommand(command) {
  */
 function executeFunction(func) {
     return __awaiter(this, void 0, void 0, function* () {
-        try {
-            yield func();
-        }
-        catch (e) {
-            console.log(e);
-        }
+        const resultat = yield func();
+        console.log(resultat);
     });
 }

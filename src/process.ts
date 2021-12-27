@@ -28,7 +28,7 @@ export async function executeKey(key: Key): Promise<CommandExecInformation | nul
         error: false,
         message: ""
     };
-    const command: string | (() => void) = commands[key];
+    const command: string | KeyFunction = commands[key];
     if(typeof command === "string"){
         try{
             result = await executeCommand(command);
@@ -53,9 +53,7 @@ async function executeCommand(command: string): Promise<CommandExecInformation>{
 
         try{
             exec(command, (error: ExecException | null, stdout: string, stderr: string) => {
-                console.log("error : "+error+", stdout : "+stdout+", stderr : "+stderr);
                 if(error != null){
-                    console.log("error != null");
                     command_exec_information = {
                         error: true,
                         message: error.message
@@ -73,11 +71,9 @@ async function executeCommand(command: string): Promise<CommandExecInformation>{
                         message: stdout
                     };
                 }
-                console.log("resolve");
                 resolve(command_exec_information);
             });
         } catch (e) {
-            console.log("catch");
             reject(e);
         }
         resolve(command_exec_information);
@@ -90,9 +86,6 @@ async function executeCommand(command: string): Promise<CommandExecInformation>{
  * @param func Fonction à executer
  */
 async function executeFunction(func: KeyFunction): Promise<void> {
-    try{
-        await func();
-    } catch (e){
-        console.log(e);
-    }
+    const resultat: string = await func();
+    console.log(resultat);
 }

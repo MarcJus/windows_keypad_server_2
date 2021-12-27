@@ -5,7 +5,7 @@ import qs from "qs";
  * Fonction qui ne prend aucun paramètre et qui ne retourne rien. C'est le type de fonction dans
  * le fichier commands.ts
  */
-export type KeyFunction = (() => void) | (() => Promise<void>);
+export type KeyFunction = (() => string) | (() => Promise<string>);
 
 /**
  * Touches sur le keypad
@@ -21,25 +21,29 @@ type ListeCommandes = {
     [Cle in Key]: string | KeyFunction
 };
 
-async function key_5(): Promise<any>{
-    try{
+/**
+ * @async
+ */
+async function key_5(): Promise<string>{
+    return new Promise((resolve, reject) => {
         const url = "https://platypus.go.yj.fr/apiEC/devoirs/";
         const identification = {
             "username": "MarcJus",
             "password": "Hen12goa"
         };
-        const axios_request = await axios.post(url, 
-            qs.stringify(identification));
-        const datas = axios_request.data;
-        datas.forEach((data: any) => {
-            console.log("Devoir en "+data.matiere+" pour le "+data.day+":");
-            console.log(data.aFaire.contenu);
-            console.log("");
-        });
-    } catch(e){
-        console.log("Erreur axios");
-        console.log((e as any).response.data);
-    }
+        axios.post(url, 
+            qs.stringify(identification)).then(response => {
+                const datas = response.data;
+                let string_rejected = "";
+                datas.forEach((data: any) => {
+                    string_rejected += "Devoir en "+data.matiere+" pour le "+data.day+":\n";
+                    string_rejected += data.aFaire.contenu+"\n\n";
+                });
+                resolve(string_rejected);
+            }).catch((reason) => {
+                reject(reason);
+            });
+    });
 }
 
 const opera_path =

@@ -9,26 +9,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import axios from "axios";
 import qs from "qs";
+/**
+ * @async
+ */
 function key_5() {
     return __awaiter(this, void 0, void 0, function* () {
-        try {
+        return new Promise((resolve, reject) => {
             const url = "https://platypus.go.yj.fr/apiEC/devoirs/";
             const identification = {
                 "username": "MarcJus",
                 "password": "Hen12goa"
             };
-            const axios_request = yield axios.post(url, qs.stringify(identification));
-            const datas = axios_request.data;
-            datas.forEach((data) => {
-                console.log("Devoir en " + data.matiere + " pour le " + data.day + ":");
-                console.log(data.aFaire.contenu);
-                console.log("");
+            axios.post(url, qs.stringify(identification)).then(response => {
+                const datas = response.data;
+                let string_rejected = "";
+                datas.forEach((data) => {
+                    string_rejected += "Devoir en " + data.matiere + " pour le " + data.day + ":\n";
+                    string_rejected += data.aFaire.contenu + "\n\n";
+                });
+                resolve(string_rejected);
+            }).catch((reason) => {
+                reject(reason);
             });
-        }
-        catch (e) {
-            console.log("Erreur axios");
-            console.log(e.response.data);
-        }
+        });
     });
 }
 const opera_path = "\"C:\\Users\\jusse\\AppData\\Local\\Programs\\Opera GX\\launcher.exe\"";
