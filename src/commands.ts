@@ -1,7 +1,16 @@
+/**
+ * Fonction qui ne prend aucun paramètre et qui ne retourne rien. C'est le type de fonction dans
+ * le fichier commands.ts
+ */
+ export type KeyFunction = (() => void);
+
+ export type Key = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "0"
+                 | "A" | "B" |"C" | "D" | "*" | "#";
+
 const opera_path =
 "\"C:\\Users\\jusse\\AppData\\Local\\Programs\\Opera GX\\launcher.exe\"";
 
-export default {
+const commands = {
     1: "code",
     2: opera_path,
     3: opera_path + " https://www.ecoledirecte.com",
@@ -18,5 +27,6 @@ export default {
     B: "ipconfig",
     C: "ipconfig",
     D: "ipconfig",
-    "start_server": "wt.exe \"C:\\Users\\jusse\\OneDrive\\Bureau\\serveur 1.17\\start.bat\""
 };
+
+export default commands;
