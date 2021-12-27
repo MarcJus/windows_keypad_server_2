@@ -1,8 +1,6 @@
 import { exec, ExecException } from "child_process";
 import commands from "./commands";
-
-export type Key = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
-                 | "A" | "B" |"C" | "D" | "*" | "#";
+import type {Key} from "./commands";
 
 /**
  * Informations sur la commande executée
