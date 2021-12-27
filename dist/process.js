@@ -9,6 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { exec } from "child_process";
 import commands from "./commands";
+/**
+ * * Fonction executée en premier
+ * @param key Touche entrée
+ * @returns Informations sur le retour de la commande/fonction executée ou null en cas d'erreur
+ */
 export function executeKey(key) {
     return __awaiter(this, void 0, void 0, function* () {
         let result = {
@@ -21,22 +26,31 @@ export function executeKey(key) {
                 result = yield executeCommand(command);
             }
             catch (e) {
-                console.log(e);
+                console.log("error executeKey");
             }
         }
         else {
-            command();
+            command(); // TODO Gérer les erreurs
         }
+        console.log("result : " + result);
         return result;
     });
 }
+/**
+ * ! Executée après executeCommand
+ * @param command Commande à executer
+ * @returns Informations sur le retour de la commande
+ */
 function executeCommand(command) {
     return __awaiter(this, void 0, void 0, function* () {
+        console.log(command);
         return new Promise((resolve, reject) => {
             let command_exec_information = { error: false, message: "" };
             try {
                 exec(command, (error, stdout, stderr) => {
+                    console.log("error : " + error + ", stdout : " + stdout + ", stderr : " + stderr);
                     if (error != null) {
+                        console.log("error != null");
                         command_exec_information = {
                             error: true,
                             message: error.message
@@ -55,6 +69,7 @@ function executeCommand(command) {
                             message: stdout
                         };
                     }
+                    console.log("resolve");
                     resolve(command_exec_information);
                 });
             }
