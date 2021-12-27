@@ -1,8 +1,6 @@
 import { exec, ExecException } from "child_process";
 import commands from "./commands";
-
-export type Key = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
-                 | "A" | "B" |"C" | "D" | "*" | "#";
+import { Key, KeyFunction } from "./commands";
 
 /**
  * Informations sur la commande executée
@@ -30,11 +28,11 @@ export async function executeKey(key: Key): Promise<CommandExecInformation | nul
         error: false,
         message: ""
     };
-    const command: string | (() => void) = commands[key];
+    const command: string | KeyFunction = commands[key];
     if(typeof command === "string"){
         result = await executeCommand(command);
     } else {
-        (command as () => void)(); // TODO Gérer les erreurs
+        await executeFunction(command);
     }
     return result;
 }
@@ -44,7 +42,7 @@ export async function executeKey(key: Key): Promise<CommandExecInformation | nul
  * @param command Commande à executer
  * @returns Informations sur le retour de la commande
  */
-async function executeCommand(command: string): Promise<CommandExecInformation>{
+ async function executeCommand(command: string): Promise<CommandExecInformation>{
     console.log("commande :",command);
     return new Promise((resolve, reject) => {
         let command_exec_information: CommandExecInformation = {error: false, message: ""};
@@ -73,4 +71,13 @@ async function executeCommand(command: string): Promise<CommandExecInformation>{
 
     });
     
+}
+
+/**
+ * Execute la fonction attribuée à chaque bouton
+ * @param func Fonction à executer
+ */
+async function executeFunction(func: KeyFunction): Promise<void> {
+    const resultat: string = await func();
+    console.log(resultat);
 }

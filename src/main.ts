@@ -1,5 +1,6 @@
 import net, {Server} from "net";
-import { executeKey, Key } from "./process";
+import { executeKey } from "./process";
+import { Key } from "./commands";
 
 const server: Server = net.createServer();
 const port = 3000;

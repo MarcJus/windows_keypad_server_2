@@ -25,7 +25,7 @@ export function executeKey(key) {
             result = yield executeCommand(command);
         }
         else {
-            command(); // TODO Gérer les erreurs
+            yield executeFunction(command);
         }
         return result;
     });
@@ -63,5 +63,15 @@ function executeCommand(command) {
                 resolve(command_exec_information);
             });
         });
+    });
+}
+/**
+ * Execute la fonction attribuée à chaque bouton
+ * @param func Fonction à executer
+ */
+function executeFunction(func) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const resultat = yield func();
+        console.log(resultat);
     });
 }
