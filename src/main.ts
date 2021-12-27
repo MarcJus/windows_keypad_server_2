@@ -22,8 +22,7 @@ server.on("connection", (socket: net.Socket) => {
         console.log(`Message de ${clientAddress} : ${string_data}`);
 
         try {
-            const command_exec_information = await executeKey((string_data as Key));
-            console.log("command exec information : ",command_exec_information);
+            await executeKey((string_data as Key));
         } catch (e) {
             console.log(e);
             socket.write("error");
