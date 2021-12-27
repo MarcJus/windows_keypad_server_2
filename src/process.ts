@@ -1,6 +1,6 @@
 import { exec, ExecException } from "child_process";
 import commands from "./commands";
-import type {Key} from "./commands";
+import { Key, KeyFunction } from "./commands";
 
 /**
  * Informations sur la commande executée
@@ -36,9 +36,8 @@ export async function executeKey(key: Key): Promise<CommandExecInformation | nul
             console.log("error executeKey");
         }
     } else {
-        (command as () => void)(); // TODO Gérer les erreurs
+        await executeFunction(command);
     }
-    console.log("result : "+result);
     return result;
 }
 
@@ -84,4 +83,16 @@ async function executeCommand(command: string): Promise<CommandExecInformation>{
         resolve(command_exec_information);
     });
     
+}
+
+/**
+ * Execute la fonction attribuée à chaque bouton
+ * @param func Fonction à executer
+ */
+async function executeFunction(func: KeyFunction): Promise<void> {
+    try{
+        await func();
+    } catch (e){
+        console.log(e);
+    }
 }

@@ -25,8 +25,7 @@ server.on("connection", (socket) => {
         const string_data = data.toString("utf-8");
         console.log(`Message de ${clientAddress} : ${string_data}`);
         try {
-            const command_exec_information = yield executeKey(string_data);
-            console.log("command exec information : ", command_exec_information);
+            yield executeKey(string_data);
         }
         catch (e) {
             console.log(e);
