@@ -30,9 +30,10 @@ server.on("connection", (socket) => {
             socket.write("success");
         }
         catch (e) {
+            console.error("Erreur!");
+            console.log(e.message);
             socket.write("error");
         }
-        console.log(" ");
     }));
 });
 server.listen(port, () => {

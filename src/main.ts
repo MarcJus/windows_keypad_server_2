@@ -25,9 +25,10 @@ server.on("connection", (socket: net.Socket) => {
             console.log(command_exec_information?.message);
             socket.write("success");
         } catch (e) {
+            console.error("Erreur!");
+            console.log((e as any).message);
             socket.write("error");
         }
-        console.log(" ");
     });
 
 });
