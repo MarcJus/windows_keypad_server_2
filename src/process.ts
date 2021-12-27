@@ -46,12 +46,11 @@ export async function executeKey(key: Key): Promise<CommandExecInformation | nul
  * @param command Commande à executer
  * @returns Informations sur le retour de la commande
  */
-async function executeCommand(command: string): Promise<CommandExecInformation>{
-    console.log(command);
+ async function executeCommand(command: string): Promise<CommandExecInformation>{
+    console.log("commande :",command);
     return new Promise((resolve, reject) => {
         let command_exec_information: CommandExecInformation = {error: false, message: ""};
 
-        try{
             exec(command, (error: ExecException | null, stdout: string, stderr: string) => {
                 if(error != null){
                     command_exec_information = {
@@ -73,10 +72,7 @@ async function executeCommand(command: string): Promise<CommandExecInformation>{
                 }
                 resolve(command_exec_information);
             });
-        } catch (e) {
-            reject(e);
-        }
-        resolve(command_exec_information);
+
     });
     
 }

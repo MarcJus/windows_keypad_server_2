@@ -25,14 +25,15 @@ server.on("connection", (socket) => {
         const string_data = data.toString("utf-8");
         console.log(`Message de ${clientAddress} : ${string_data}`);
         try {
-            yield executeKey(string_data);
+            const command_exec_information = yield executeKey(string_data);
+            console.log(command_exec_information === null || command_exec_information === void 0 ? void 0 : command_exec_information.message);
+            socket.write("success");
         }
         catch (e) {
-            console.log(e);
+            console.error("Erreur!");
+            console.log(e.message);
             socket.write("error");
         }
-        // Réponse : succes
-        socket.write("success");
     }));
 });
 server.listen(port, () => {
