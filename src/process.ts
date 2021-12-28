@@ -43,7 +43,7 @@ export async function executeKey(key: Key): Promise<CommandExecInformation | nul
  * @returns Informations sur le retour de la commande
  */
  async function executeCommand(command: string): Promise<CommandExecInformation>{
-    console.log("commande :",command);
+    console.log(`commande : ${command}`);
     return new Promise((resolve, reject) => {
         let command_exec_information: CommandExecInformation = {error: false, message: ""};
 
