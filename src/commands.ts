@@ -40,7 +40,7 @@ async function platypus_get_devoirs(): Promise<string>{
                     string_rejected += data.aFaire.contenu+"\n\n";
                 });
                 resolve(string_rejected);
-            }).catch((reason) => {
+            }).catch((reason: any) => {
                 reject(reason);
             });
     });
