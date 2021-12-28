@@ -36,8 +36,8 @@ async function platypus_get_devoirs(): Promise<string>{
                 const datas = response.data;
                 let string_rejected = "";
                 datas.forEach((data: any) => {
-                    string_rejected += "Devoir en "+data.matiere+" pour le "+data.day+":\n";
-                    string_rejected += data.aFaire.contenu+"\n\n";
+                    string_rejected += `Devoir en ${data.matiere} pour le ${data.day}:\n`;
+                    string_rejected += `${data.aFaire.contenu}\n\n`;
                 });
                 resolve(string_rejected);
             }).catch((reason: any) => {
@@ -52,7 +52,7 @@ const opera_path =
 const commands: ListeCommandes = {
     1: "code",
     2: opera_path,
-    3: opera_path + " https://www.ecoledirecte.com",
+    3: `${opera_path} https://www.ecoledirecte.com`,
     4: "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" https://www.google.com/",
     5: platypus_get_devoirs,
     6: "wt.exe ssh pi@rspm",

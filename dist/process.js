@@ -37,7 +37,7 @@ export function executeKey(key) {
  */
 function executeCommand(command) {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log("commande :", command);
+        console.log(`commande : ${command}`);
         return new Promise((resolve, reject) => {
             let command_exec_information = { error: false, message: "" };
             exec(command, (error, stdout, stderr) => {
