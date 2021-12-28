@@ -24,7 +24,7 @@ type ListeCommandes = {
 /**
  * @async
  */
-async function key_5(): Promise<string>{
+async function platypus_get_devoirs(): Promise<string>{
     return new Promise((resolve, reject) => {
         const url = "https://platypus.go.yj.fr/apiEC/devoirs/";
         const identification = {
@@ -54,7 +54,7 @@ const commands: ListeCommandes = {
     2: opera_path,
     3: opera_path + " https://www.ecoledirecte.com",
     4: "\"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe\" https://www.google.com/",
-    5: key_5,
+    5: platypus_get_devoirs,
     6: "wt.exe ssh pi@rspm",
     7: "wt.exe",
     8: "",
