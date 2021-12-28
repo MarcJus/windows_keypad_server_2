@@ -1,5 +1,6 @@
 import net, {Server} from "net";
-import { executeKey, Key } from "./process";
+import { executeKey } from "./process";
+import { Key } from "./commands";
 
 const server: Server = net.createServer();
 const port = 3000;
@@ -24,9 +25,9 @@ server.on("connection", (socket: net.Socket) => {
             const command_exec_information = await executeKey((string_data as Key));
             console.log(command_exec_information?.message);
             socket.write("success");
-        } catch (e) {
+        } catch (e: any) {
             console.error("Erreur!");
-            console.log((e as any).message);
+            console.log(e.message);
             socket.write("error");
         }
     });
