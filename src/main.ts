@@ -23,7 +23,7 @@ server.on("connection", (socket: net.Socket) => {
 
         try {
             const command_exec_information = await executeKey((string_data as Key));
-            console.log(command_exec_information?.message);
+            console.log(command_exec_information.message);
             socket.write("success");
         } catch (e: any) {
             console.error("Erreur!");

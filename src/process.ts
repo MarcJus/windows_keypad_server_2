@@ -23,7 +23,7 @@ interface CommandExecInformation {
  * @param key Touche entrée
  * @returns Informations sur le retour de la commande/fonction executée ou null en cas d'erreur
  */
-export async function executeKey(key: Key): Promise<CommandExecInformation | null>{
+export async function executeKey(key: Key): Promise<CommandExecInformation>{
     let result: CommandExecInformation = {
         error: false,
         message: ""

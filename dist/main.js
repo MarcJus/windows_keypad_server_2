@@ -26,7 +26,7 @@ server.on("connection", (socket) => {
         console.log(`Message de ${clientAddress} : ${string_data}`);
         try {
             const command_exec_information = yield executeKey(string_data);
-            console.log(command_exec_information === null || command_exec_information === void 0 ? void 0 : command_exec_information.message);
+            console.log(command_exec_information.message);
             socket.write("success");
         }
         catch (e) {
