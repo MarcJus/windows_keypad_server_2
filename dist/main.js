@@ -28,12 +28,14 @@ server.on("connection", (socket) => {
         try {
             const command_exec_information = yield executeKey(string_data);
             console.log(command_exec_information.message);
-            socket.write("success");
+            // socket.write("success");
+            send_response(socket, "success");
         }
         catch (e) {
             console.error("Erreur!");
             console.log(e.message);
-            socket.write("error");
+            // socket.write("error");
+            send_response(socket, "error");
         }
     }));
 });
@@ -42,4 +44,15 @@ server.listen(port, () => {
 });
 function debug_message(data) {
     console.log(`valeur hexadecimale : ${Buffer.from(data).toString("hex")}`);
+}
+function send_response(socket, message) {
+    const clientAddress = socket.remoteAddress;
+    socket.write(message, (error) => {
+        if (error) {
+            console.log(`Impossible d'envoyer ${message} à ${clientAddress} : ${error}`);
+        }
+        else {
+            console.log(`Message envoyé à ${clientAddress} : ${message}`);
+        }
+    });
 }

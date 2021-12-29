@@ -25,11 +25,13 @@ server.on("connection", (socket: net.Socket) => {
         try {
             const command_exec_information = await executeKey((string_data as Key));
             console.log(command_exec_information.message);
-            socket.write("success");
+            // socket.write("success");
+            send_response(socket, "success");
         } catch (e: any) {
             console.error("Erreur!");
             console.log(e.message);
-            socket.write("error");
+            // socket.write("error");
+            send_response(socket, "error");
         }
     });
 
@@ -41,4 +43,17 @@ server.listen(port, () => {
 
 function debug_message(data: Buffer): void{
     console.log(`valeur hexadecimale : ${Buffer.from(data).toString("hex")}`);
+}
+
+type ResponseSocket = "success" | "error";
+
+function send_response(socket: net.Socket, message: ResponseSocket){
+    const clientAddress: string | undefined = socket.remoteAddress;
+    socket.write(message, (error: Error | undefined) => {
+        if(error){
+            console.log(`Impossible d'envoyer ${message} à ${clientAddress} : ${error}`);
+        } else {
+            console.log(`Message envoyé à ${clientAddress} : ${message}`);
+        }
+    });
 }
