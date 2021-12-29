@@ -20,7 +20,6 @@ server.on("connection", (socket: net.Socket) => {
     socket.on("data", async (data: Buffer) => {
         const string_data: string = data.toString("utf-8");
         console.log(`Message de ${clientAddress} : ${string_data}`);
-        debug_message(data);
 
         try {
             const command_exec_information = await executeKey((string_data as Key));
@@ -40,10 +39,6 @@ server.on("connection", (socket: net.Socket) => {
 server.listen(port, () => {
     console.log("Serveur démarré sur le port "+port);
 });
-
-function debug_message(data: Buffer): void{
-    console.log(`valeur hexadecimale : ${Buffer.from(data).toString("hex")}`);
-}
 
 type ResponseSocket = "success" | "error";
 
