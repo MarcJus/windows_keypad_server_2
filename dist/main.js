@@ -24,7 +24,6 @@ server.on("connection", (socket) => {
     socket.on("data", (data) => __awaiter(void 0, void 0, void 0, function* () {
         const string_data = data.toString("utf-8");
         console.log(`Message de ${clientAddress} : ${string_data}`);
-        debug_message(data);
         try {
             const command_exec_information = yield executeKey(string_data);
             console.log(command_exec_information.message);
@@ -42,9 +41,6 @@ server.on("connection", (socket) => {
 server.listen(port, () => {
     console.log("Serveur démarré sur le port " + port);
 });
-function debug_message(data) {
-    console.log(`valeur hexadecimale : ${Buffer.from(data).toString("hex")}`);
-}
 function send_response(socket, message) {
     const clientAddress = socket.remoteAddress;
     if (!socket.destroyed) {
