@@ -47,7 +47,7 @@ function debug_message(data) {
 }
 function send_response(socket, message) {
     const clientAddress = socket.remoteAddress;
-    try {
+    if (!socket.destroyed) {
         socket.write(message, (error) => {
             if (error) {
                 console.log(`Impossible d'envoyer ${message} à ${clientAddress} : ${error}`);
@@ -57,7 +57,7 @@ function send_response(socket, message) {
             }
         });
     }
-    catch (error) {
-        console.log(`Erreur catch : ${error}`);
+    else {
+        console.log(`Impossible d'envoyer ${message} à ${clientAddress} : la connexion est terminée`);
     }
 }
