@@ -47,12 +47,17 @@ function debug_message(data) {
 }
 function send_response(socket, message) {
     const clientAddress = socket.remoteAddress;
-    socket.write(message, (error) => {
-        if (error) {
-            console.log(`Impossible d'envoyer ${message} à ${clientAddress} : ${error}`);
-        }
-        else {
-            console.log(`Message envoyé à ${clientAddress} : ${message}`);
-        }
-    });
+    try {
+        socket.write(message, (error) => {
+            if (error) {
+                console.log(`Impossible d'envoyer ${message} à ${clientAddress} : ${error}`);
+            }
+            else {
+                console.log(`Message envoyé à ${clientAddress} : ${message}`);
+            }
+        });
+    }
+    catch (error) {
+        console.log(`Erreur catch : ${error}`);
+    }
 }

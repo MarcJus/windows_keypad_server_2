@@ -49,11 +49,15 @@ type ResponseSocket = "success" | "error";
 
 function send_response(socket: net.Socket, message: ResponseSocket){
     const clientAddress: string | undefined = socket.remoteAddress;
-    socket.write(message, (error: Error | undefined) => {
-        if(error){
-            console.log(`Impossible d'envoyer ${message} à ${clientAddress} : ${error}`);
-        } else {
-            console.log(`Message envoyé à ${clientAddress} : ${message}`);
-        }
-    });
+    try {
+        socket.write(message, (error: Error | undefined) => {
+            if(error){
+                console.log(`Impossible d'envoyer ${message} à ${clientAddress} : ${error}`);
+            } else {
+                console.log(`Message envoyé à ${clientAddress} : ${message}`);
+            }
+        });
+    } catch (error: any) {
+        console.log(`Erreur catch : ${error}`);
+    }
 }
