@@ -9,14 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import net from "net";
 import { executeKey } from "./process";
+import commands from "./commands";
+import config from "./config.json";
 const server = net.createServer();
-const port = 3000;
+const port = config.port;
 server.on("connection", (socket) => {
     const clientAddress = socket.remoteAddress;
     console.log(`Nouvelle connexion : ${clientAddress}`);
     socket.setEncoding("utf-8");
     // Timeout 10 secondes
-    socket.setTimeout(10000, () => {
+    socket.setTimeout(config.timeout, () => {
         socket.write("error");
         console.log(`${clientAddress} : Timeout`);
     });
@@ -24,17 +26,17 @@ server.on("connection", (socket) => {
     socket.on("data", (data) => __awaiter(void 0, void 0, void 0, function* () {
         const string_data = data.toString("utf-8");
         console.log(`Message de ${clientAddress} : ${string_data}`);
-        try {
-            const command_exec_information = yield executeKey(string_data);
-            console.log(command_exec_information.message);
-            // socket.write("success");
-            send_response(socket, "success");
-        }
-        catch (e) {
-            console.error("Erreur!");
-            console.log(e.message);
-            // socket.write("error");
-            send_response(socket, "error");
+        if (isKey(string_data)) {
+            try {
+                const command_exec_information = yield executeKey(string_data);
+                console.log(command_exec_information.message);
+                send_response(socket, "success");
+            }
+            catch (e) {
+                console.error("Erreur!");
+                console.log(e.message);
+                send_response(socket, "error");
+            }
         }
     }));
 });
@@ -56,4 +58,7 @@ function send_response(socket, message) {
     else {
         console.log(`Impossible d'envoyer ${message} à ${clientAddress} : la connexion est terminée`);
     }
+}
+function isKey(message) {
+    return commands[message] !== undefined;
 }
