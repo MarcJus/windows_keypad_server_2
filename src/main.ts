@@ -14,12 +14,12 @@ app.get("/key/:key",async (request, response) => {
     try {
         const command_exec_information = await executeKey((key as Key));
         console.log(command_exec_information.message);
+        response.send(command_exec_information.message);
     } catch (e: any) {
         console.error("Erreur!");
         console.log(e.message);
+        response.send(e.message);
     }
-
-    response.send(key);
 });
 
 // server.on("connection", (socket: net.Socket) => {

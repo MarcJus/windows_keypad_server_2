@@ -19,12 +19,13 @@ app.get("/key/:key", (request, response) => __awaiter(void 0, void 0, void 0, fu
     try {
         const command_exec_information = yield executeKey(key);
         console.log(command_exec_information.message);
+        response.send(command_exec_information.message);
     }
     catch (e) {
         console.error("Erreur!");
         console.log(e.message);
+        response.send(e.message);
     }
-    response.send(key);
 }));
 // server.on("connection", (socket: net.Socket) => {
 //     const clientAddress: string | undefined = socket.remoteAddress;
