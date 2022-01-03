@@ -17,8 +17,8 @@ function platypus_get_devoirs() {
         return new Promise((resolve, reject) => {
             const url = "https://platypus.go.yj.fr/apiEC/devoirs/";
             const identification = {
-                "username": "MarcJus",
-                "password": "Hen12goa"
+                "username": "xxxxxxxx",
+                "password": "xxxxxxxx"
             };
             axios.post(url, qs.stringify(identification)).then(response => {
                 const datas = response.data;
