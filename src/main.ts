@@ -8,8 +8,16 @@ import express from "express";
 const app = express();
 const port = config.port;
 
-app.get("/key/:key", (request, response) => {
+app.get("/key/:key",async (request, response) => {
     const key = request.params.key;
+
+    try {
+        const command_exec_information = await executeKey((key as Key));
+        console.log(command_exec_information.message);
+    } catch (e: any) {
+        console.error("Erreur!");
+        console.log(e.message);
+    }
 
     response.send(key);
 });
@@ -30,15 +38,15 @@ app.get("/key/:key", (request, response) => {
 //         const string_data: string = data.toString("utf-8");
 //         console.log(`Message de ${clientAddress} : ${string_data}`);
 
-//         try {
-//             const command_exec_information = await executeKey((string_data as Key));
-//             console.log(command_exec_information.message);
-//             send_response(socket, "success");
-//         } catch (e: any) {
-//             console.error("Erreur!");
-//             console.log(e.message);
-//             send_response(socket, "error");
-//         }
+        // try {
+        //     const command_exec_information = await executeKey((string_data as Key));
+        //     console.log(command_exec_information.message);
+        //     send_response(socket, "success");
+        // } catch (e: any) {
+        //     console.error("Erreur!");
+        //     console.log(e.message);
+        //     send_response(socket, "error");
+        // }
 //     });
 
 // });

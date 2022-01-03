@@ -1,12 +1,31 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+// import net, {Server} from "net";
+import { executeKey } from "./process";
 import config from "./config.json";
 import express from "express";
 // const server: Server = net.createServer();
 const app = express();
 const port = config.port;
-app.get("/key/:key", (request, response) => {
+app.get("/key/:key", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const key = request.params.key;
+    try {
+        const command_exec_information = yield executeKey(key);
+        console.log(command_exec_information.message);
+    }
+    catch (e) {
+        console.error("Erreur!");
+        console.log(e.message);
+    }
     response.send(key);
-});
+}));
 // server.on("connection", (socket: net.Socket) => {
 //     const clientAddress: string | undefined = socket.remoteAddress;
 //     console.log(`Nouvelle connexion : ${clientAddress}`);
@@ -20,15 +39,15 @@ app.get("/key/:key", (request, response) => {
 //     socket.on("data", async (data: Buffer) => {
 //         const string_data: string = data.toString("utf-8");
 //         console.log(`Message de ${clientAddress} : ${string_data}`);
-//         try {
-//             const command_exec_information = await executeKey((string_data as Key));
-//             console.log(command_exec_information.message);
-//             send_response(socket, "success");
-//         } catch (e: any) {
-//             console.error("Erreur!");
-//             console.log(e.message);
-//             send_response(socket, "error");
-//         }
+// try {
+//     const command_exec_information = await executeKey((string_data as Key));
+//     console.log(command_exec_information.message);
+//     send_response(socket, "success");
+// } catch (e: any) {
+//     console.error("Erreur!");
+//     console.log(e.message);
+//     send_response(socket, "error");
+// }
 //     });
 // });
 app.listen(port, () => {
