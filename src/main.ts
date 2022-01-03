@@ -37,6 +37,10 @@ const port = config.port;
 
 // });
 
+app.listen(port, () => {
+    console.log(`Serveur démarré sur le port ${port}`);
+});
+
 // server.listen(port, () => {
 //     console.log("Serveur démarré sur le port "+port);
 // });
