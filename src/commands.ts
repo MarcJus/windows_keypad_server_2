@@ -28,8 +28,8 @@ async function platypus_get_devoirs(): Promise<string>{
     return new Promise((resolve, reject) => {
         const url = "https://platypus.go.yj.fr/apiEC/devoirs/";
         const identification = {
-            "username": "MarcJus",
-            "password": "Hen12goa"
+            "username": "xxxxxxxx", // Identifiant ecole directe
+            "password": "xxxxxxxx"  // Mot de passe ecole directe
         };
         axios.post(url, 
             qs.stringify(identification)).then(response => {
