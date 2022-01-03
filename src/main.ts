@@ -8,6 +8,12 @@ import express from "express";
 const app = express();
 const port = config.port;
 
+app.get("/key/:key", (request, response) => {
+    const key = request.params.key;
+
+    response.send(key);
+});
+
 // server.on("connection", (socket: net.Socket) => {
 //     const clientAddress: string | undefined = socket.remoteAddress;
 //     console.log(`Nouvelle connexion : ${clientAddress}`);
