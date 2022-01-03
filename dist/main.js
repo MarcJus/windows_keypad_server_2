@@ -7,58 +7,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import net from "net";
 import { executeKey } from "./process";
-import commands from "./commands";
 import config from "./config.json";
-const server = net.createServer();
+import express from "express";
+const app = express();
 const port = config.port;
-server.on("connection", (socket) => {
-    const clientAddress = socket.remoteAddress;
-    console.log(`Nouvelle connexion : ${clientAddress}`);
-    socket.setEncoding("utf-8");
-    // Timeout 10 secondes
-    socket.setTimeout(config.timeout, () => {
-        socket.write("error");
-        console.log(`${clientAddress} : Timeout`);
-    });
-    // Reception de données
-    socket.on("data", (data) => __awaiter(void 0, void 0, void 0, function* () {
-        const string_data = data.toString("utf-8");
-        console.log(`Message de ${clientAddress} : ${string_data}`);
-        if (isKey(string_data)) {
-            try {
-                const command_exec_information = yield executeKey(string_data);
-                console.log(command_exec_information.message);
-                send_response(socket, "success");
-            }
-            catch (e) {
-                console.error("Erreur!");
-                console.log(e.message);
-                send_response(socket, "error");
-            }
-        }
-    }));
-});
-server.listen(port, () => {
-    console.log("Serveur démarré sur le port " + port);
-});
-function send_response(socket, message) {
-    const clientAddress = socket.remoteAddress;
-    if (!socket.destroyed) {
-        socket.write(message, (error) => {
-            if (error) {
-                console.log(`Impossible d'envoyer ${message} à ${clientAddress} : ${error}`);
-            }
-            else {
-                console.log(`Message envoyé à ${clientAddress} : ${message}`);
-            }
-        });
+app.get("/key/:key", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    const key = request.params.key;
+    try {
+        const command_exec_information = yield executeKey(key);
+        console.log(command_exec_information.message);
+        response.send(command_exec_information.message);
     }
-    else {
-        console.log(`Impossible d'envoyer ${message} à ${clientAddress} : la connexion est terminée`);
+    catch (e) {
+        console.error("Erreur!");
+        console.log(e.message);
+        response.status(500).send(e.message + "\n");
     }
-}
-function isKey(message) {
-    return commands[message] !== undefined;
-}
+}));
+app.listen(port, () => {
+    console.log(`Serveur démarré sur le port ${port}`);
+});

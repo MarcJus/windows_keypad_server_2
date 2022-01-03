@@ -18,7 +18,7 @@ function platypus_get_devoirs() {
             const url = "https://platypus.go.yj.fr/apiEC/devoirs/";
             const identification = {
                 "username": "xxxxxxxx",
-                "password": "xxxxxxxx" // Mot de passe ecole directe
+                "password": "xxxxxxxx"
             };
             axios.post(url, qs.stringify(identification)).then(response => {
                 const datas = response.data;
