@@ -24,7 +24,7 @@ app.get("/key/:key", (request, response) => __awaiter(void 0, void 0, void 0, fu
     catch (e) {
         console.error("Erreur!");
         console.log(e.message);
-        response.send(e.message);
+        response.status(500).send(e.message + "\n");
     }
 }));
 // server.on("connection", (socket: net.Socket) => {

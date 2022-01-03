@@ -18,7 +18,7 @@ app.get("/key/:key",async (request, response) => {
     } catch (e: any) {
         console.error("Erreur!");
         console.log(e.message);
-        response.send(e.message);
+        response.status(500).send(e.message+"\n");
     }
 });
 
