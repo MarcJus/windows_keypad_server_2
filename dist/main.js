@@ -14,6 +14,7 @@ const app = express();
 const port = config.port;
 app.get("/key/:key", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const key = request.params.key;
+    console.log(`Key : ${key}`);
     try {
         const command_exec_information = yield executeKey(key);
         console.log(command_exec_information.message);

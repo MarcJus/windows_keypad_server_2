@@ -8,6 +8,7 @@ const port = config.port;
 
 app.get("/key/:key",async (request, response) => {
     const key = request.params.key;
+    console.log(`Key : ${key}`);
 
     try {
         const command_exec_information = await executeKey((key as Key));

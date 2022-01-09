@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import axios from "axios";
 import qs from "qs";
+import config from "./config.json";
 /**
  * @async
  */
@@ -17,8 +18,8 @@ function platypus_get_devoirs() {
         return new Promise((resolve, reject) => {
             const url = "https://platypus.go.yj.fr/apiEC/devoirs/";
             const identification = {
-                "username": "xxxxxxxx",
-                "password": "xxxxxxxx"
+                "username": config.username,
+                "password": config.password
             };
             axios.post(url, qs.stringify(identification)).then(response => {
                 const datas = response.data;

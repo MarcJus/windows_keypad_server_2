@@ -1,5 +1,6 @@
 import axios from "axios";
 import qs from "qs";
+import config from "./config.json";
 
 /**
  * Fonction qui ne prend aucun paramètre et qui ne retourne rien. C'est le type de fonction dans
@@ -28,8 +29,8 @@ async function platypus_get_devoirs(): Promise<string>{
     return new Promise((resolve, reject) => {
         const url = "https://platypus.go.yj.fr/apiEC/devoirs/";
         const identification = {
-            "username": "xxxxxxxx",
-            "password": "xxxxxxxx"
+            "username": config.username,
+            "password": config.password
         };
         axios.post(url, 
             qs.stringify(identification)).then(response => {
