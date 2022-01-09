@@ -49,7 +49,18 @@ async function platypus_get_devoirs(): Promise<string>{
 
 async function platypus_get_moyenne(): Promise<string>{
     return new Promise((resolve, reject) => {
-
+        const url = "https://platypus.go.yj.fr/apiEC/moyenne/?periode=A002";
+        const identification = {
+            "username": config.username,
+            "password": config.password
+        };
+        axios.post(url,
+            qs.stringify(identification)).then(response => {
+                const datas = response.data;
+                resolve(datas);
+            }).catch((reason: any) => {
+                reject(reason);
+            });
     });
 }
 
@@ -64,7 +75,7 @@ const commands: ListeCommandes = {
     5: platypus_get_devoirs,
     6: "wt.exe ssh pi@rspm",
     7: "wt.exe",
-    8: "",
+    8: platypus_get_moyenne,
     9: "\"C:\\Users\\jusse\\AppData\\Local\\Postman\\Postman.exe\"",
     "*": "ipconfige",
     0: "ipconfig",
