@@ -47,6 +47,12 @@ async function platypus_get_devoirs(): Promise<string>{
     });
 }
 
+async function platypus_get_moyenne(): Promise<string>{
+    return new Promise((resolve, reject) => {
+
+    });
+}
+
 const opera_path =
 "\"C:\\Users\\jusse\\AppData\\Local\\Programs\\Opera GX\\launcher.exe\"";
 

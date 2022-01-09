@@ -35,6 +35,12 @@ function platypus_get_devoirs() {
         });
     });
 }
+function platypus_get_moyenne() {
+    return __awaiter(this, void 0, void 0, function* () {
+        return new Promise((resolve, reject) => {
+        });
+    });
+}
 const opera_path = "\"C:\\Users\\jusse\\AppData\\Local\\Programs\\Opera GX\\launcher.exe\"";
 const commands = {
     1: "code",
