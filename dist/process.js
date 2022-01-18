@@ -25,7 +25,7 @@ export function executeKey(key) {
             result = yield executeCommand(command);
         }
         else {
-            yield executeFunction(command);
+            result.message = yield executeFunction(command);
         }
         return result;
     });
@@ -72,6 +72,6 @@ function executeCommand(command) {
 function executeFunction(func) {
     return __awaiter(this, void 0, void 0, function* () {
         const resultat = yield func();
-        console.log(resultat);
+        return resultat;
     });
 }

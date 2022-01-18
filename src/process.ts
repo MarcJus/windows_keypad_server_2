@@ -32,7 +32,7 @@ export async function executeKey(key: Key): Promise<CommandExecInformation>{
     if(typeof command === "string"){
         result = await executeCommand(command);
     } else {
-        await executeFunction(command);
+        result.message = await executeFunction(command);
     }
     return result;
 }
@@ -77,7 +77,7 @@ export async function executeKey(key: Key): Promise<CommandExecInformation>{
  * Execute la fonction attribuée à chaque bouton
  * @param func Fonction à executer
  */
-async function executeFunction(func: KeyFunction): Promise<void> {
+async function executeFunction(func: KeyFunction): Promise<string> {
     const resultat: string = await func();
-    console.log(resultat);
+    return resultat;
 }

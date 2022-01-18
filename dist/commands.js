@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import axios from "axios";
 import qs from "qs";
+import config from "./config.json";
 /**
  * @async
  */
@@ -17,17 +18,35 @@ function platypus_get_devoirs() {
         return new Promise((resolve, reject) => {
             const url = "https://platypus.go.yj.fr/apiEC/devoirs/";
             const identification = {
-                "username": "xxxxxxxx",
-                "password": "xxxxxxxx" // Mot de passe ecole directe
+                "username": config.username,
+                "password": config.password
             };
             axios.post(url, qs.stringify(identification)).then(response => {
                 const datas = response.data;
                 let string_rejected = "";
+                string_rejected += `${datas.length}\n`;
                 datas.forEach((data) => {
                     string_rejected += `Devoir en ${data.matiere} pour le ${data.day}:\n`;
                     string_rejected += `${data.aFaire.contenu}\n\n`;
                 });
                 resolve(string_rejected);
+            }).catch((reason) => {
+                reject(reason);
+            });
+        });
+    });
+}
+function platypus_get_moyenne() {
+    return __awaiter(this, void 0, void 0, function* () {
+        return new Promise((resolve, reject) => {
+            const url = "https://platypus.go.yj.fr/apiEC/moyenne/?periode=A002";
+            const identification = {
+                "username": config.username,
+                "password": config.password
+            };
+            axios.post(url, qs.stringify(identification)).then(response => {
+                const datas = response.data;
+                resolve(datas);
             }).catch((reason) => {
                 reject(reason);
             });
@@ -43,7 +62,7 @@ const commands = {
     5: platypus_get_devoirs,
     6: "wt.exe ssh pi@rspm",
     7: "wt.exe",
-    8: "",
+    8: platypus_get_moyenne,
     9: "\"C:\\Users\\jusse\\AppData\\Local\\Postman\\Postman.exe\"",
     "*": "ipconfige",
     0: "ipconfig",
