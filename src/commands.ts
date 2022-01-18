@@ -36,6 +36,7 @@ async function platypus_get_devoirs(): Promise<string>{
             qs.stringify(identification)).then(response => {
                 const datas = response.data;
                 let string_rejected = "";
+                string_rejected += `${(datas as Array<string>).length}\n`;
                 datas.forEach((data: any) => {
                     string_rejected += `Devoir en ${data.matiere} pour le ${data.day}:\n`;
                     string_rejected += `${data.aFaire.contenu}\n\n`;
