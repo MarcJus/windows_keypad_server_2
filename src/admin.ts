@@ -1,5 +1,5 @@
 import { Socket } from "net";
-import commands, { Key, KeyFunction } from "./commands";
+import commands, { Key, KeyFunction } from "./commands/commands";
 
 export type AdminMessages = "get-keys" | "edit-key";
 

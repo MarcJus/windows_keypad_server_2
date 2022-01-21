@@ -1,13 +1,16 @@
-import { executeKey } from "./process";
-import { Key } from "./commands";
+import { executeKey } from "./commands/process";
+import { Key } from "./commands/commands";
 import config from "./config.json";
 import express from "express";
 
 const app = express();
 const port = config.port;
 
+let last_key: Key | undefined = undefined;
+
 app.get("/key/:key",async (request, response) => {
     const key = request.params.key;
+    last_key = (key as Key);
     console.log(`Key : ${key}`);
 
     try {

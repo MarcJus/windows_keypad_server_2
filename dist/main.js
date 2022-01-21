@@ -7,13 +7,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { executeKey } from "./process";
+import { executeKey } from "./commands/process";
 import config from "./config.json";
 import express from "express";
 const app = express();
 const port = config.port;
+let last_key = undefined;
 app.get("/key/:key", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const key = request.params.key;
+    last_key = key;
     console.log(`Key : ${key}`);
     try {
         const command_exec_information = yield executeKey(key);

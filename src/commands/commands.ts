@@ -1,6 +1,6 @@
 import axios from "axios";
 import qs from "qs";
-import config from "./config.json";
+import config from "../config.json";
 
 /**
  * Fonction qui ne prend aucun paramètre et qui ne retourne rien. C'est le type de fonction dans
