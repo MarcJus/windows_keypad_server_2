@@ -22,12 +22,15 @@ type ListeCommandes = {
     [Cle in Key]: string | KeyFunction
 };
 
+const http_platypus_base_url = "http://platypus.go.yj.fr/apiEC";
+const https_platypus_base_url = "https://platypus.go.yj.fr/apiEC";
+
 /**
  * @async
  */
 async function platypus_get_devoirs(): Promise<string>{
     return new Promise((resolve, reject) => {
-        const url = "https://platypus.go.yj.fr/apiEC/devoirs/";
+        const url = `${http_platypus_base_url}/devoirs`;
         const identification = {
             "username": config.username,
             "password": config.password
@@ -50,7 +53,7 @@ async function platypus_get_devoirs(): Promise<string>{
 
 async function platypus_get_moyenne(): Promise<string>{
     return new Promise((resolve, reject) => {
-        const url = "https://platypus.go.yj.fr/apiEC/moyenne/?periode=A002";
+        const url = `${http_platypus_base_url}/moyenne/?periode=A002`;
         const identification = {
             "username": config.username,
             "password": config.password
