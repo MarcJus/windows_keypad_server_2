@@ -16,6 +16,7 @@ app.get("/key/:key",async (request, response) => {
 
     try {
         const command_exec_information = await executeKey((key as Key));
+        last_message_sent = command_exec_information.message;
         console.log(command_exec_information.message);
         response.send(command_exec_information.message);
     } catch (e: any) {

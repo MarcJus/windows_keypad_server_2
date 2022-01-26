@@ -20,6 +20,7 @@ app.get("/key/:key", (request, response) => __awaiter(void 0, void 0, void 0, fu
     console.log(`Key : ${key}`);
     try {
         const command_exec_information = yield executeKey(key);
+        last_message_sent = command_exec_information.message;
         console.log(command_exec_information.message);
         response.send(command_exec_information.message);
     }
