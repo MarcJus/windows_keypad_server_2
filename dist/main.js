@@ -12,7 +12,8 @@ import config from "./config.json";
 import express from "express";
 const app = express();
 const port = config.port;
-let last_key = undefined;
+export let last_key = undefined;
+export let last_message_sent = undefined;
 app.get("/key/:key", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const key = request.params.key;
     last_key = key;

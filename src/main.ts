@@ -6,7 +6,8 @@ import express from "express";
 const app = express();
 const port = config.port;
 
-let last_key: Key | undefined = undefined;
+export let last_key: Key | undefined = undefined;
+export let last_message_sent: string | undefined = undefined;
 
 app.get("/key/:key",async (request, response) => {
     const key = request.params.key;
