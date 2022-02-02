@@ -30,7 +30,7 @@ const https_platypus_base_url = "https://platypus.go.yj.fr/apiEC";
  */
 async function platypus_get_devoirs(): Promise<string>{
     return new Promise((resolve, reject) => {
-        const url = `${http_platypus_base_url}/devoirs`;
+        const url = `${http_platypus_base_url}/devoirs/`;
         const identification = {
             "username": config.username,
             "password": config.password
